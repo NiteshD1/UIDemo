@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">UIDemo</string>
+    <string name="text_header">Select languages that you already know</string>
+    <string name="c">C++</string>
+    <string name="java">JAVA</string>
+    <string name="python">Python</string>
+    <string name="submit">Submit</string>
 </resources>

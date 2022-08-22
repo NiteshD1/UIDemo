@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ViewDemoActivity extends AppCompatActivity {
 
     ActivityViewDemoBinding binding;
-    String checkedString = "";
+    StringBuilder checkedString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,30 +22,28 @@ public class ViewDemoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
+        setupCheckBox();
 
         binding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkedString = "";
+                checkedString = new StringBuilder("Selected Languages are");
                 setupCheckBox();
 
-                if(checkedString.isEmpty()){
-                    showToast("Nothing is selected");
-                }else {
-                    showToast(checkedString);
-                }
+                showToast(checkedString.toString());
+
             }
         });
-
     }
 
     private void setupCheckBox() {
 
-        if(binding.checkBox1.isChecked()) checkedString = checkedString.concat("C++ Checked ");
-        if(binding.checkBox2.isChecked()) checkedString = checkedString.concat("JAVA Checked ");
-        if(binding.checkBox3.isChecked()) checkedString = checkedString.concat("Python Checked");
+        if(binding.checkBoxC.isChecked()) checkedString.append("\n C++");
+        if(binding.checkBoxJava.isChecked()) checkedString.append("\n JAVA");
+        if(binding.checkBoxPython.isChecked()) checkedString.append("\n Python");
 
     }
+
 
     private void showToast(String s) {
         Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
