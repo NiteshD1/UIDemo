@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.upwards.uidemo.databinding.ActivityViewDemoBinding;
@@ -21,27 +22,37 @@ public class ViewDemoActivity extends AppCompatActivity {
         binding = ActivityViewDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setupToggleButton();
+        setupSwitch();
 
-        setupCheckBox();
+    }
 
-        binding.submitButton.setOnClickListener(new View.OnClickListener() {
+    private void setupSwitch() {
+
+        binding.switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                checkedString = new StringBuilder("Selected Languages are");
-                setupCheckBox();
-
-                showToast(checkedString.toString());
-
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(binding.switchButton.isChecked()){
+                    showToast("Wifi is ON");
+                }else{
+                    showToast("Wifi is OFF");
+                }
             }
         });
     }
 
-    private void setupCheckBox() {
+    private void setupToggleButton() {
+        binding.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-        if(binding.checkBoxC.isChecked()) checkedString.append("\n C++");
-        if(binding.checkBoxJava.isChecked()) checkedString.append("\n JAVA");
-        if(binding.checkBoxPython.isChecked()) checkedString.append("\n Python");
-
+                if(binding.toggleButton.isChecked()){
+                    showToast("Toggle Button Checked");
+                }else {
+                    showToast("Toggle Button Unchecked");
+                }
+            }
+        });
     }
 
 

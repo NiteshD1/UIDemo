@@ -21,38 +21,27 @@
             android:layout_margin="8dp"
             android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_header"
-                android:textStyle="bold"
-                android:textSize="16sp"/>
 
-            <CheckBox
-                android:id="@+id/checkBoxC"
-                android:layout_width="match_parent"
+            <ToggleButton
+                android:id="@+id/toggleButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:checked="true"
-                android:text="@string/c" />
+                android:text="ToggleButton"
+                android:textOff="Toggle Off"
+                android:textOn="Toggle On" />
 
-            <CheckBox
-                android:id="@+id/checkBoxJava"
+            <Switch
+                android:id="@+id/switchButton"
+                android:layout_margin="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/java" />
-
-            <CheckBox
-                android:id="@+id/checkBoxPython"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/python" />
-
-            <Button
-                android:id="@+id/submitButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/submit"/>
-
+                android:text="Wifi"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:checked="true"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
 
     </ScrollView>
