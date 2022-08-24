@@ -21,7 +21,7 @@ public class ViewDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityViewDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        // Increase Color Scheme Font
         setupToggleButton();
         setupSwitch();
 
