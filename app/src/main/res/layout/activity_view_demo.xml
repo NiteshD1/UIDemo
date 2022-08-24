@@ -26,21 +26,21 @@
                 android:id="@+id/toggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:checked="true"
-                android:text="ToggleButton"
-                android:textOff="Toggle Off"
-                android:textOn="Toggle On" />
+                android:checked="false"
+                android:textOn="@string/wifi_on"
+                android:textOff="@string/wifi_off"
+                android:text="@string/togglebutton" />
 
             <Switch
-                android:id="@+id/switchButton"
-                android:layout_margin="16dp"
+                android:id="@+id/switch1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wifi"
-                android:textSize="18sp"
+                android:layout_margin="8dp"
+                android:text="Wifi Switch"
+                android:checked="false"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:checked="true"
+                android:textAllCaps="true"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
 

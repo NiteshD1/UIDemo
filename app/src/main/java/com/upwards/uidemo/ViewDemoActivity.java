@@ -28,14 +28,13 @@ public class ViewDemoActivity extends AppCompatActivity {
     }
 
     private void setupSwitch() {
-
-        binding.switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        binding.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(binding.switchButton.isChecked()){
-                    showToast("Wifi is ON");
-                }else{
-                    showToast("Wifi is OFF");
+                if(binding.switch1.isChecked()){
+                    showToast("Wifi Switch is turn ON");
+                }else {
+                    showToast("Wifi Switch is turn OFF");
                 }
             }
         });
@@ -45,11 +44,10 @@ public class ViewDemoActivity extends AppCompatActivity {
         binding.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
                 if(binding.toggleButton.isChecked()){
                     showToast("Toggle Button Checked");
-                }else {
-                    showToast("Toggle Button Unchecked");
+                }else{
+                    showToast("Toggle Button not Checked");
                 }
             }
         });
@@ -57,7 +55,7 @@ public class ViewDemoActivity extends AppCompatActivity {
 
 
     private void showToast(String s) {
-        Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),s, Toast.LENGTH_LONG).show();
     }
 
 }
