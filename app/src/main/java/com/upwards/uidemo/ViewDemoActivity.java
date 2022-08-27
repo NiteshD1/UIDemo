@@ -6,75 +6,98 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.upwards.uidemo.databinding.ActivityViewDemoBinding;
 
-public class ViewDemoActivity extends AppCompatActivity{
+public class ViewDemoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ActivityViewDemoBinding binding;
-    StringBuilder checkedString;
+    String[] countryArray = {"India", "USA", "China", "America","Other"};
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityViewDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         // Increase Color Scheme Font
-        setupDatePicker();
-        setupTimePicker();
-        setupFloatingActionButton();
+
+        setupSpinner();
+        setupProgressBar();
+        setupSeekBar();
+        setuRatingBar();
 
     }
 
-    private void setupFloatingActionButton() {
-        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+    private void setuRatingBar() {
+        binding.showRatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showToast("Floating Action Button Clicked");
+                showToast("Current Rating is " + binding.ratingBar.getRating());
             }
         });
     }
 
-    private void setupTimePicker() {
-        binding.timePicker.setIs24HourView(false);
-        binding.showTimeButton.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
+    private void setupSeekBar() {
+
+        binding.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View view) {
-                showSelectedTime();
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                showToast("Current Progress is " + i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        binding.seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                showToast("Current Progress is " + i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void showSelectedTime() {
-        StringBuilder timeString = new StringBuilder("Selected Time is : ");
-
-        timeString.append("Hour : " + binding.timePicker.getHour());
-        timeString.append(" Minute : " + binding.timePicker.getMinute());
-        showToast(timeString.toString());
-
-    }
-
-    private void setupDatePicker() {
-        binding.showDateButton.setOnClickListener(new View.OnClickListener() {
+    private void setupProgressBar() {
+        binding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSelectedDate();
+                if(binding.progressBar2.getProgress() <= 95){
+                    binding.progressBar2.setProgress(binding.progressBar2.getProgress() + 5);
+                    showToast("Current Progress is " + String.valueOf( binding.progressBar2.getProgress() + 5));
+                }
             }
         });
     }
 
-    private void showSelectedDate() {
-        StringBuilder dateString = new StringBuilder("Selected Date is : ");
+    private void setupSpinner() {
+        binding.spinner.setOnItemSelectedListener(this);
 
-        dateString.append("Year : " + binding.datePicker.getYear());
-        dateString.append(" Month : " + binding.datePicker.getMonth());
-        dateString.append(" Day of Month: " +binding.datePicker.getDayOfMonth());
-        showToast(dateString.toString());
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,countryArray);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        binding.spinner.setAdapter(arrayAdapter);
     }
 
 
@@ -83,4 +106,13 @@ public class ViewDemoActivity extends AppCompatActivity{
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        showToast(countryArray[i] + " is Selected");
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        //showToast("Nothing is Selected");
+    }
 }
