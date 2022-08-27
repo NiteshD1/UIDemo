@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ViewDemoActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        app:tint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -21,46 +33,39 @@
             android:layout_margin="8dp"
             android:orientation="vertical" >
 
-
-           <DatePicker
-               android:id="@+id/datePicker"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"/>
-
-            <Button
-                android:id="@+id/buttonShowDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Show Selected Date"/>
-            <TimePicker
-                android:id="@+id/timePicker"
-                android:layout_width="match_parent"
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <Button
-                android:id="@+id/buttonShowTime"
+                android:layout_margin="8dp"
+                android:id="@+id/showDateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Show Date"/>
+
+            <TimePicker
+                android:layout_marginTop="8dp"
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
                 android:layout_margin="8dp"
-                android:text="Show Selected Time" />
+                android:id="@+id/showTimeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Show Time"/>
+
+
 
         </LinearLayout>
 
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
 
-        app:tint="@null"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
