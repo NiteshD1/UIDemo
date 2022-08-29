@@ -14,10 +14,10 @@ import android.widget.Toast;
 
 import com.upwards.uidemo.databinding.ActivityViewDemoBinding;
 
-public class ViewDemoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ViewDemoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     ActivityViewDemoBinding binding;
-    String[] countryArray = {"India", "USA", "China", "America","Other"};
+    String[] countryArray = {"India", "USA", "China", "Australia","Other"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +28,13 @@ public class ViewDemoActivity extends AppCompatActivity implements AdapterView.O
 
         setupSpinner();
         setupProgressBar();
-        setupSeekBar();
-        setuRatingBar();
+        setupSeekbar();
+        setupRatingBar();
 
     }
 
-    private void setuRatingBar() {
-        binding.showRatingButton.setOnClickListener(new View.OnClickListener() {
+    private void setupRatingBar() {
+        binding.buttonShowRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showToast("Current Rating is " + binding.ratingBar.getRating());
@@ -42,12 +42,11 @@ public class ViewDemoActivity extends AppCompatActivity implements AdapterView.O
         });
     }
 
-    private void setupSeekBar() {
-
-        binding.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+    private void setupSeekbar() {
+        binding.seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                showToast("Current Progress is " + i);
+                showToast("Current Progress is "+ i );
             }
 
             @Override
@@ -60,11 +59,10 @@ public class ViewDemoActivity extends AppCompatActivity implements AdapterView.O
 
             }
         });
-
         binding.seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                showToast("Current Progress is " + i);
+                showToast("Current Progress is "+ i );
             }
 
             @Override
@@ -77,23 +75,26 @@ public class ViewDemoActivity extends AppCompatActivity implements AdapterView.O
 
             }
         });
+
     }
 
     private void setupProgressBar() {
         binding.submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(binding.progressBar2.getProgress() <= 95){
-                    binding.progressBar2.setProgress(binding.progressBar2.getProgress() + 5);
-                    showToast("Current Progress is " + String.valueOf( binding.progressBar2.getProgress() + 5));
+                int currentProgress = binding.progressBar3.getProgress();
+
+                if(currentProgress <= 95){
+                    binding.progressBar3.setProgress(currentProgress + 5);
                 }
+                showToast("Current Progress is " + String.valueOf(currentProgress + 5) );
             }
         });
     }
 
     private void setupSpinner() {
-        binding.spinner.setOnItemSelectedListener(this);
 
+        binding.spinner.setOnItemSelectedListener(this);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,countryArray);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -108,11 +109,11 @@ public class ViewDemoActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        showToast(countryArray[i] + " is Selected");
+       showToast("Selected Country is " + countryArray[i]);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-        //showToast("Nothing is Selected");
+
     }
 }
