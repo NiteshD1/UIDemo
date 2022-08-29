@@ -3,21 +3,29 @@ package com.upwards.uidemo;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.MediaController;
+import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.upwards.uidemo.databinding.ActivityViewDemoBinding;
 
-public class ViewDemoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ViewDemoActivity extends AppCompatActivity{
 
     ActivityViewDemoBinding binding;
     String[] countryArray = {"India", "USA", "China", "Australia","Other"};
+    ArrayAdapter<String > adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,94 +34,51 @@ public class ViewDemoActivity extends AppCompatActivity implements AdapterView.O
         setContentView(binding.getRoot());
         // Increase Color Scheme Font
 
-        setupSpinner();
-        setupProgressBar();
-        setupSeekbar();
-        setupRatingBar();
+        setupVideoView();
+        setupSearchView();
 
     }
 
-    private void setupRatingBar() {
-        binding.buttonShowRating.setOnClickListener(new View.OnClickListener() {
+    private void setupSearchView() {
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,countryArray);
+        binding.listView.setAdapter(adapter);
+
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View view) {
-                showToast("Current Rating is " + binding.ratingBar.getRating());
-            }
-        });
-    }
-
-    private void setupSeekbar() {
-        binding.seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                showToast("Current Progress is "+ i );
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        binding.seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                showToast("Current Progress is "+ i );
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-    }
-
-    private void setupProgressBar() {
-        binding.submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentProgress = binding.progressBar3.getProgress();
-
-                if(currentProgress <= 95){
-                    binding.progressBar3.setProgress(currentProgress + 5);
+            public boolean onQueryTextSubmit(String query) {
+                if(Arrays.asList(countryArray).contains(query)){
+                    adapter.getFilter().filter(query);
+                }else{
+                    showToast("No match found");
                 }
-                showToast("Current Progress is " + String.valueOf(currentProgress + 5) );
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                adapter.getFilter().filter(query);
+
+                return false;
             }
         });
+
     }
 
-    private void setupSpinner() {
+    private void setupVideoView() {
 
-        binding.spinner.setOnItemSelectedListener(this);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,countryArray);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(binding.videoView);
 
-        binding.spinner.setAdapter(arrayAdapter);
+        String uriString="android.resource://"+getPackageName()+"/"+R.raw.demo_video;
+
+        binding.videoView.setMediaController(mediaController);
+        binding.videoView.setVideoURI(Uri.parse(uriString));
+        binding.videoView.requestFocus();
+        binding.videoView.start();
     }
-
 
     private void showToast(String s) {
         Toast.makeText(getApplicationContext(),s, Toast.LENGTH_LONG).show();
     }
 
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-       showToast("Selected Country is " + countryArray[i]);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 }
