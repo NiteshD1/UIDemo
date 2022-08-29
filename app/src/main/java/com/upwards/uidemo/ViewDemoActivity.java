@@ -24,9 +24,8 @@ import java.util.Arrays;
 public class ViewDemoActivity extends AppCompatActivity{
 
     ActivityViewDemoBinding binding;
-    String[] countryArray = {"India", "USA", "China", "Australia","Other"};
-    ArrayAdapter<String > adapter;
-
+    String[] countryArray = {"India", "Iran","USA", "China", "Australia","Other"};
+   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,47 +33,14 @@ public class ViewDemoActivity extends AppCompatActivity{
         setContentView(binding.getRoot());
         // Increase Color Scheme Font
 
-        setupVideoView();
-        setupSearchView();
-
+        setupAutoCompleteTextView();
     }
 
-    private void setupSearchView() {
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,countryArray);
-        binding.listView.setAdapter(adapter);
+    private void setupAutoCompleteTextView() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item,countryArray);
+        binding.autoCompleteTextView.setAdapter(adapter);
 
-        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                if(Arrays.asList(countryArray).contains(query)){
-                    adapter.getFilter().filter(query);
-                }else{
-                    showToast("No match found");
-                }
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                adapter.getFilter().filter(query);
-
-                return false;
-            }
-        });
-
-    }
-
-    private void setupVideoView() {
-
-        MediaController mediaController = new MediaController(this);
-        mediaController.setAnchorView(binding.videoView);
-
-        String uriString="android.resource://"+getPackageName()+"/"+R.raw.demo_video;
-
-        binding.videoView.setMediaController(mediaController);
-        binding.videoView.setVideoURI(Uri.parse(uriString));
-        binding.videoView.requestFocus();
-        binding.videoView.start();
+        binding.autoCompleteTextView.setThreshold(1);
     }
 
     private void showToast(String s) {
