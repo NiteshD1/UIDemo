@@ -2,8 +2,10 @@ package com.upwards.uidemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
         setupWebview();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void setupWebview() {
-      webView.loadUrl("https://www.google.com/");
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("http://www.google.com/");
     }
+
 }
