@@ -9,11 +9,10 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-public class CustomViewCircle extends View {
+public class CircleCustomView extends View {
 
-    private Paint paint;
-
-    public CustomViewCircle(Context context, @Nullable AttributeSet attrs) {
+    Paint paint;
+    public CircleCustomView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
         paint.setColor(Color.GREEN);

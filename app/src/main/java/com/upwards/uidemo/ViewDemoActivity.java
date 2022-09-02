@@ -33,13 +33,13 @@ public class ViewDemoActivity extends AppCompatActivity{
         setContentView(binding.getRoot());
         // Increase Color Scheme Font
 
-        setupAutoCompleteTextView();
+        setupAutocompleteTextView();
+
     }
 
-    private void setupAutoCompleteTextView() {
+    private void setupAutocompleteTextView() {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item,countryArray);
         binding.autoCompleteTextView.setAdapter(adapter);
-
         binding.autoCompleteTextView.setThreshold(1);
     }
 
