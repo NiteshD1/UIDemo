@@ -18,40 +18,70 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical" >
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-            <TextView
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@drawable/android_image"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Android"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_header"
-                android:textStyle="bold"
-                android:textSize="16sp"/>
+                android:padding="64dp">
 
-            <CheckBox
-                android:id="@+id/checkBoxC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/c" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:hint="@string/enter_your_user_name"
+                    android:id="@+id/editTextUserName"/>
 
-            <CheckBox
-                android:id="@+id/checkBoxJava"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/java" />
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:layout_below="@+id/editTextUserName"
+                    android:layout_alignParentLeft="true"
+                    android:hint="Enter Your Password" />
+            </RelativeLayout>
 
-            <CheckBox
-                android:id="@+id/checkBoxPython"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/python" />
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/submitButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/submit"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/submitBtn"
+                    android:layout_marginEnd="16dp"
+                    android:text="Submit"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/submitBtn"
+                    android:layout_marginStart="16dp"
+                    android:text="Clear"
+                    android:id="@+id/clearBtn"/>
+            </RelativeLayout>
 
         </LinearLayout>
 

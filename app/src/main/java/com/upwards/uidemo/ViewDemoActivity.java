@@ -21,29 +21,28 @@ public class ViewDemoActivity extends AppCompatActivity {
         binding = ActivityViewDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-        setupCheckBox();
-
-        binding.submitButton.setOnClickListener(new View.OnClickListener() {
+        binding.submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkedString = new StringBuilder("Selected Languages are");
-                setupCheckBox();
+                String userName = binding.editTextUserName.getText().toString();
+                String password = binding.editTextPassword.getText().toString();
 
-                showToast(checkedString.toString());
+                if(userName != null && password != null && userName.length()>0 && password.length()>0){
+                    showToast("User Signed In");
+                }else {
+                    showToast("Please Enter Details First!");
+                }
+            }
+        });
 
+        binding.clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.editTextUserName.setText("");
+                binding.editTextPassword.setText("");
             }
         });
     }
-
-    private void setupCheckBox() {
-
-        if(binding.checkBoxC.isChecked()) checkedString.append("\n C++");
-        if(binding.checkBoxJava.isChecked()) checkedString.append("\n JAVA");
-        if(binding.checkBoxPython.isChecked()) checkedString.append("\n Python");
-
-    }
-
 
     private void showToast(String s) {
         Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
