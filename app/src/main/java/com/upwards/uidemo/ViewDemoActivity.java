@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.upwards.uidemo.databinding.ActivityViewDemoBinding;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ViewDemoActivity extends AppCompatActivity {
 
@@ -21,27 +22,8 @@ public class ViewDemoActivity extends AppCompatActivity {
         binding = ActivityViewDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userName = binding.editTextUserName.getText().toString();
-                String password = binding.editTextPassword.getText().toString();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-                if(userName != null && password != null && userName.length()>0 && password.length()>0){
-                    showToast("User Signed In");
-                }else {
-                    showToast("Please Enter Details First!");
-                }
-            }
-        });
-
-        binding.clearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.editTextUserName.setText("");
-                binding.editTextPassword.setText("");
-            }
-        });
     }
 
     private void showToast(String s) {
