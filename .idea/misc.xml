@@ -9,6 +9,10 @@
         <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/layout/activity_test.xml" value="0.17447916666666666" />
         <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/layout/activity_view_demo.xml" value="0.22" />
+        <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/layout/layout_list_item.xml" value="0.17447916666666666" />
+        <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/layout/single_list_item.xml" value="0.33" />
+        <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/layout/single_recycle_view_item.xml" value="0.33" />
+        <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/layout/single_recycler_view_item.xml" value="0.5" />
       </map>
     </option>
   </component>

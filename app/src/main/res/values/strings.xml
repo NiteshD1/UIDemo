@@ -6,4 +6,16 @@
     <string name="python">Python</string>
     <string name="submit">Submit</string>
     <string name="enter_your_user_name">Enter your User Name</string>
+
+    <string-array name="resource_array_country">
+        <item>India</item>
+        <item>USA</item>
+        <item>Iran</item>
+        <item>Australia</item>
+        <item>Germany</item>
+        <item>China</item>
+        <item>Africa</item>
+        <item>Pakistan</item>
+    </string-array>
+
 </resources>
