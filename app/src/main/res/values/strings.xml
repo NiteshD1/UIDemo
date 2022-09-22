@@ -6,6 +6,11 @@
     <string name="python">Python</string>
     <string name="submit">Submit</string>
     <string name="enter_your_user_name">Enter your User Name</string>
+    <string name="show_toast">Show Toast</string>
+    <string name="show_snackbar">Show SnackBar</string>
+    <string name="show_alert_dialog">Show Alert Dialog</string>
+    <string name="show_notification">Show Notification</string>
+    <string name="snack_bar_message">SnackBar Button is Clicked</string>
 
     <string-array name="resource_array_country">
         <item>India</item>

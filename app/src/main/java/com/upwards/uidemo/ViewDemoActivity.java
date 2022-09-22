@@ -1,27 +1,26 @@
 package com.upwards.uidemo;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.upwards.uidemo.adapters.RecyclerViewAdapter;
+import com.google.android.material.snackbar.Snackbar;
 import com.upwards.uidemo.databinding.ActivityViewDemoBinding;
 import com.upwards.uidemo.models.Person;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ViewDemoActivity extends AppCompatActivity {
 
     ActivityViewDemoBinding binding;
-    String[] countryArray = {"India","USA","Germany","Africa","Iran","China","Pakistan"};
-    List<Person> personList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,48 +28,100 @@ public class ViewDemoActivity extends AppCompatActivity {
         binding = ActivityViewDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setupListView();
-        setupRecyclerView();
+        setupToast();
+        setupSnackBar();
+        setupDialog();
+        setupNotification();
     }
 
-    private void setupRecyclerView() {
-
-        personList = new ArrayList<Person>();
-        personList.add(new Person("Nitesh yadav","22/01/2000",R.drawable.profile_1));
-        personList.add(new Person("Harish yadav","22/01/2000",R.drawable.profile_2));
-        personList.add(new Person("Jon yadav","22/01/2000",R.drawable.profile_3));
-        personList.add(new Person("Ram yadav","22/01/2000",R.drawable.profile_4));
-        personList.add(new Person("Nitesh yadav","22/01/2000",R.drawable.profile_5));
-        personList.add(new Person("Sandeep yadav","22/01/2000",R.drawable.profile_6));
-        personList.add(new Person("Deepak yadav","22/01/2000",R.drawable.profile_2));
-        personList.add(new Person("Jan yadav","22/01/2000",R.drawable.profile_1));
-        personList.add(new Person("Jon yadav","22/01/2000",R.drawable.profile_3));
-        personList.add(new Person("Harish yadav","22/01/2000",R.drawable.profile_1));
-
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(personList);
-        binding.recyclerView.setHasFixedSize(true);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerView.setAdapter(adapter);
-    }
-
-    private void setupListView() {
-        String[] resourceCountryArray = getResources().getStringArray(R.array.resource_array_country);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.single_list_item,resourceCountryArray);
-
-        binding.listView.setAdapter(adapter);
-
-        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    private void setupNotification() {
+        binding.buttonShowNotification.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String item = adapter.getItem(position);
-                showToast(item);
+            public void onClick(View view) {
+                showNotification();
             }
         });
-
     }
 
-    private void showToast(String s) {
-        Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
+    private void showNotification() {
+        Notification.Builder builder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_icon_alert)
+                .setContentTitle("Alert Notification!")
+                .setContentText("This is a Alert Notification!")
+                .setAutoCancel(true)
+                .setPriority(Notification.PRIORITY_DEFAULT);
+
+        Intent intent = new Intent(this,MainActivity.class);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        builder.setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0,builder.build());
+    }
+
+    private void setupDialog() {
+        binding.buttonShowAlertDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlertDialog();
+            }
+        });
+    }
+
+    private void showAlertDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Add New Task")
+                .setMessage("Would you like to add new Task?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        showToast("New Task added successfully!");
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        showToast("New task is not added!");
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    private void setupSnackBar() {
+        binding.buttonShowSnackBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSnackBar();
+            }
+        });
+    }
+
+    private void showSnackBar() {
+        Snackbar.make(binding.buttonShowSnackBar,"Show Snackbar is Clicked",Snackbar.LENGTH_LONG)
+                .setAction(getString(R.string.show_toast), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showToast("Show Toast From Snackbar is Clicked");
+                    }
+                })
+                .setAnchorView(binding.floatingActionButton)
+                .show();
+    }
+
+    private void setupToast() {
+        binding.buttonShowToast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showToast("Show Toast Is Clicked");
+            }
+        });
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
 }
