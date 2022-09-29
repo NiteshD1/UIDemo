@@ -7,20 +7,16 @@
     android:background="#9F9F9F"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lotteAnimationView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Welocome In MainActivity"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/success_anim" />
 </androidx.constraintlayout.widget.ConstraintLayout>

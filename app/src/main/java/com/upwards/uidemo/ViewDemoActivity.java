@@ -1,8 +1,12 @@
 package com.upwards.uidemo;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
@@ -24,77 +28,67 @@ public class ViewDemoActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        binding.moveButton.setOnClickListener(new View.OnClickListener() {
+        binding.moveValueAnimatorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveAnimation();
+                moveViaValueAnimator();
             }
         });
 
-        binding.fadeOutButton.setOnClickListener(new View.OnClickListener() {
+        binding.moveObjectAnimatorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fadeOutAnimation();
+                moveViaObjectAnimator();
             }
         });
 
-        binding.fadeInButton.setOnClickListener(new View.OnClickListener() {
+        binding.animationSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fadeInAnimation();
-            }
-        });
-
-        binding.rotateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rotateAnimation();
-            }
-        });
-
-        binding.zoomInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                zoomInAnimation();
-            }
-        });
-
-        binding.zoomOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                zoomOutAnimation();
+                runMultipleAnimation();
             }
         });
     }
 
-    private void zoomOutAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this,R.anim.zoom_out_animation);
-        binding.imageViewBike.startAnimation(animation);
+    private void runMultipleAnimation() {
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(binding.imageViewBike,"translationX",0f,500f);
+        anim1.setDuration(1000);
+
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(binding.imageViewBike,"translationX",500f,250f);
+        anim2.setDuration(1000);
+
+        ObjectAnimator anim3 = ObjectAnimator.ofFloat(binding.imageViewBike,"rotation",0,360);
+        anim3.setDuration(1000);
+
+
+        AnimatorSet animatorSet = new AnimatorSet();
+
+        animatorSet.play(anim1);
+        animatorSet.play(anim2).after(anim1);
+        animatorSet.play(anim3).after(anim2);
+
+        animatorSet.start();
     }
 
-    private void zoomInAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this,R.anim.zoom_in_animation);
-        binding.imageViewBike.startAnimation(animation);
+    private void moveViaObjectAnimator() {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(binding.imageViewBike,"translationX",0f,500f);
+        animator.setDuration(1000);
+        animator.start();
     }
 
-    private void rotateAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this,R.anim.rotate_animation);
-        binding.imageViewBike.startAnimation(animation);
-    }
+    private void moveViaValueAnimator() {
+        ValueAnimator animator = ValueAnimator.ofFloat(0f,300f);
+        animator.setDuration(1000);
+        animator.start();
 
-    private void fadeInAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this,R.anim.fade_in_animation);
-        binding.imageViewBike.startAnimation(animation);
-    }
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float updatedValue = (float) valueAnimator.getAnimatedValue();
+                binding.imageViewBike.setTranslationX(updatedValue);
+            }
+        });
 
-    private void fadeOutAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this,R.anim.fade_out_animation);
-        binding.imageViewBike.startAnimation(animation);
-    }
-
-    private void moveAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this,R.anim.move_animation);
-        binding.imageViewBike.startAnimation(animation);
     }
 
 
