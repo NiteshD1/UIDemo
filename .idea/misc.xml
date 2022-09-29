@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18854166666666666" />
+        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/drawable/button_background_drawable.xml" value="0.18854166666666666" />
+        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/drawable/ic_baseline_campaign_24.xml" value="0.18854166666666666" />
+        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/drawable/ic_baseline_pedal_bike_24.xml" value="0.18854166666666666" />
+        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/drawable/ic_icon_add.xml" value="0.18854166666666666" />
         <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/drawable/ic_icon_alert.xml" value="0.18854166666666666" />
+        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/drawable/ic_icon_bike.xml" value="0.18854166666666666" />
+        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.18854166666666666" />
         <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/layout/activity_view_demo.xml" value="0.33" />
+        <entry key="..\:/Course/Projects/UIDemo/app/src/main/res/layout/activity_view_demo.xml" value="0.22" />
         <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/drawable/button_background_drawable.xml" value="0.190625" />
         <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/drawable/dog_image.xml" value="0.190625" />
         <entry key="..\:/ND/Upwards/AllApps/CourseApp/UIDemo/app/src/main/res/drawable/ic_baseline_pedal_bike_24.xml" value="0.190625" />
