@@ -8,15 +8,4 @@
     tools:context=".MainActivity">
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lotteAnimationView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="false"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/success_anim" />
 </androidx.constraintlayout.widget.ConstraintLayout>
