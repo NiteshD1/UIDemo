@@ -17,12 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.upwards.uidemo.Utils.Utils;
 import com.upwards.uidemo.databinding.ActivityViewDemoBinding;
 
 public class ViewDemoActivity extends AppCompatActivity {
 
     ActivityViewDemoBinding binding;
 
+    private int number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,65 +32,31 @@ public class ViewDemoActivity extends AppCompatActivity {
         binding = ActivityViewDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        number = 0;
 
+        if(savedInstanceState != null){
+            number = Integer.parseInt(savedInstanceState.getString("COUNT"));
+            binding.textView.setText(String.valueOf(number));
+        }
 
+        Utils.showToast("Toast called from Utils");
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.counterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ViewDemoActivity.this,MainActivity.class));
+                increamentCount();
             }
         });
-        showToast("onCreate Demo Activity");
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        showToast("onStart Demo Activity");
-
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        showToast("onRestoreInstanceState Demo Activity");
-
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        showToast("onResume Demo Activity");
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        showToast("onPause Demo Activity");
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        showToast("onStop Demo Activity");
-
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        showToast("onSaveInstanceState Demo Activity");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        showToast("onDestroy Demo Activity");
-
+    private void increamentCount() {
+        number = number + 1;
+        binding.textView.setText(String.valueOf(number));
     }
 
     private void showAlertDialog() {
@@ -109,6 +77,12 @@ public class ViewDemoActivity extends AppCompatActivity {
                 })
                 .create()
                 .show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString("COUNT",binding.textView.getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     private void showToast(String message) {
